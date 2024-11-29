@@ -28,7 +28,9 @@ def merge(arr, start1, end1, start2, end2):
         yield from merge(arr, start1+1, end1, start2, end2)
 
 
-def merge_sort(arr, start, end):
+def merge_sort(arr, start=0, end=-1):
+    end %= len(arr)
+
     if end - start == 0:
         return
 
