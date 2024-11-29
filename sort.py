@@ -5,6 +5,7 @@ def bubble_sort(arr):
                 arr[j], arr[j+1] = arr[j+1], arr[j]
                 yield arr
 
+
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
@@ -14,6 +15,7 @@ def insertion_sort(arr):
             arr[j] = key
             yield arr
             j -= 1
+
 
 def merge(arr1, arr2):
     if arr1 == []:
@@ -25,6 +27,7 @@ def merge(arr1, arr2):
     else:
         return [arr2[0]] + merge(arr1, arr2[1:])
 
+
 def merge_sort(arr):
     if len(arr) == 1:
         return arr
@@ -34,6 +37,7 @@ def merge_sort(arr):
     return merge(
         merge_sort(arr[:middle]),
         merge_sort(arr[middle:]))
+
 
 if __name__ == "__main__":
     import random
