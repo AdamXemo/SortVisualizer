@@ -37,7 +37,7 @@ def draw_array(array):
 random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
 
 paused = False
-sorting_steps = list(sort.insertion_sort(random_array))
+sorting_steps = list(sort.bubble_sort(random_array))
 current_step_index = 0
 
 while True:
@@ -55,6 +55,10 @@ while True:
             if event.key == pygame.K_LEFT: # step backward
                 if current_step_index > 0:
                     current_step_index -= 1
+            if event.key == pygame.K_r:
+                random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
+                sorting_steps = list(sort.bubble_sort(random_array))
+                current_step_index = 0
             
     keys = pygame.key.get_pressed()
     if keys[pygame.K_d]:
@@ -63,8 +67,6 @@ while True:
     if keys[pygame.K_a]:
         if current_step_index > 0:
             current_step_index -= 1
-    if keys[pygame.K_r]:
-        current_step_index = 0
 
     if not paused and current_step_index < len(sorting_steps) - 1:
         current_step_index += 1
