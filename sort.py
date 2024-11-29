@@ -17,26 +17,27 @@ def insertion_sort(arr):
             j -= 1
 
 
-def merge(arr1, arr2):
-    if arr1 == []:
-        return arr2
-    elif arr2 == []:
-        return arr1
-    elif arr1[0] < arr2[0]:
-        return [arr1[0]] + merge(arr1[1:], arr2)
+def merge(arr, start1, end1, start2, end2):
+    if start1 > end1 or start2 > end2:
+        return
+    if arr[start2] < arr[start1]:
+        arr.insert(start1, arr.pop(start2))
+        merge(arr, start1+1, end1+1, start2+1, end2)
     else:
-        return [arr2[0]] + merge(arr1, arr2[1:])
+        merge(arr, start1+1, end1, start2, end2)
 
 
-def merge_sort(arr):
-    if len(arr) == 1:
-        return arr
+def merge_sort(arr, start, end):
+    if end - start == 0:
+        return
 
-    middle = len(arr) // 2
+    middle = (start+end) // 2
 
-    return merge(
-        merge_sort(arr[:middle]),
-        merge_sort(arr[middle:]))
+    yield from merge_sort(arr, start, middle)
+    yield from merge_sort(arr, middle+1, end)
+
+    merge(arr, start, middle, middle+1, end)
+    yield arr
 
 
 if __name__ == "__main__":
