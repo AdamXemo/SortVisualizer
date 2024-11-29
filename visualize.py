@@ -9,14 +9,14 @@ clock = pygame.time.Clock()
 
 def draw_element(index, value):
     margin = 10
-    width = 10
+    element_width = 10
     height_scale = 10
     pygame.draw.rect(screen,
                      (200, 200, 200),
                      pygame.Rect(
-                        margin + index*(width+margin),
+                        margin + index*(element_width+margin),
                         height - margin - height_scale*value,
-                        width,
+                        element_width,
                         height_scale * value))
 
 
