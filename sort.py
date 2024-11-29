@@ -22,9 +22,10 @@ def merge(arr, start1, end1, start2, end2):
         return
     if arr[start2] < arr[start1]:
         arr.insert(start1, arr.pop(start2))
-        merge(arr, start1+1, end1+1, start2+1, end2)
+        yield arr
+        yield from merge(arr, start1+1, end1+1, start2+1, end2)
     else:
-        merge(arr, start1+1, end1, start2, end2)
+        yield from merge(arr, start1+1, end1, start2, end2)
 
 
 def merge_sort(arr, start, end):
@@ -36,8 +37,7 @@ def merge_sort(arr, start, end):
     yield from merge_sort(arr, start, middle)
     yield from merge_sort(arr, middle+1, end)
 
-    merge(arr, start, middle, middle+1, end)
-    yield arr
+    yield from merge(arr, start, middle, middle+1, end)
 
 
 if __name__ == "__main__":
