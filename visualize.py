@@ -1,5 +1,6 @@
 import pygame
 import random
+import sort
 
 pygame.init()
 
@@ -26,6 +27,7 @@ def draw_element(index, value):
 
 
 def draw_array(array):
+    screen.fill((0, 0, 0))
     for i in range(len(array)):
         draw_element(i, array[i])
 
@@ -35,10 +37,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
 
-    screen.fill((0, 0, 0))
-
-    random_array = random.sample(range(50), 50)
+    random_array = random.sample(range(20), 20)
     draw_array(random_array)
 
-    pygame.display.flip()
-    clock.tick(60)
+    for step in sort.bubble_sort(random_array):
+        draw_array(step)
+        pygame.display.flip()
+        clock.tick(20)
+
+    pygame.quit()
