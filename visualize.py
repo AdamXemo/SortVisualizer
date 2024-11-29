@@ -40,7 +40,7 @@ while True:
     random_array = random.sample(range(20), 20)
     draw_array(random_array)
 
-    for step in sort.bubble_sort(random_array):
+    for step in sort.insertion_sort(random_array):
         draw_array(step)
         pygame.display.flip()
         clock.tick(20)

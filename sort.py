@@ -1,4 +1,3 @@
-
 def bubble_sort(arr):
     for i in range(len(arr)):
         for j in range(len(arr)-i-1):
@@ -12,9 +11,10 @@ def insertion_sort(arr):
         j = i - 1
         while j >= 0 and key < arr[j]:
             arr[j+1] = arr[j]
+            yield arr
             j -= 1
         arr[j+1] = key
-    return arr
+        yield arr
 
 if __name__ == "__main__":
     import random
