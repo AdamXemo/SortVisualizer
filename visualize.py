@@ -4,12 +4,12 @@ import sort
 
 pygame.init()
 
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 1020, 600
 MARGIN = 10
 BAR_WIDTH = 10
 HEIGHT_SCALE = 10
-FPS = 20
-ARRAY_SIZE = 20
+FPS = 60
+ARRAY_SIZE = 50
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
@@ -35,15 +35,46 @@ def draw_array(array):
 
 
 random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
-draw_array(random_array)
 
-for step in sort.insertion_sort(random_array):
+paused = False
+sorting_steps = list(sort.insertion_sort(random_array))
+current_step_index = 0
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
+            exit()
+        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                paused = not paused
+            if event.key == pygame.K_RIGHT: # step forward
+                if current_step_index < len(sorting_steps) - 1:
+                    current_step_index += 1
+            if event.key == pygame.K_LEFT: # step backward
+                if current_step_index > 0:
+                    current_step_index -= 1
+            
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_d]:
+        if current_step_index < len(sorting_steps) - 1:
+            current_step_index += 1
+    if keys[pygame.K_a]:
+        if current_step_index < len(sorting_steps) - 1:
+            current_step_index -= 1
+    if keys[pygame.K_r]:
+        current_step_index = 0
 
-    draw_array(step)
+    if not paused and current_step_index < len(sorting_steps) - 1:
+        current_step_index += 1
+
+    draw_array(sorting_steps[current_step_index])
+    
+    if paused:
+        font = pygame.font.SysFont('Arial', 40)
+        text = font.render("Sorting Paused. Press Space to Resume.", True, (255, 255, 255))
+        screen.blit(text, (WIDTH // 6, HEIGHT * 0.05))
+        
     pygame.display.flip()
     clock.tick(FPS)
-
-pygame.quit()
