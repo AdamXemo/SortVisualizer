@@ -61,7 +61,7 @@ while True:
         if current_step_index < len(sorting_steps) - 1:
             current_step_index += 1
     if keys[pygame.K_a]:
-        if current_step_index < len(sorting_steps) - 1:
+        if current_step_index > 0:
             current_step_index -= 1
     if keys[pygame.K_r]:
         current_step_index = 0
