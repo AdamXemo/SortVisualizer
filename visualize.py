@@ -34,17 +34,16 @@ def draw_array(array):
         draw_element(i, array[i])
 
 
-while True:
+random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
+draw_array(random_array)
+
+for step in sort.insertion_sort(random_array):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
 
-    random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
-    draw_array(random_array)
+    draw_array(step)
+    pygame.display.flip()
+    clock.tick(FPS)
 
-    for step in sort.insertion_sort(random_array):
-        draw_array(step)
-        pygame.display.flip()
-        clock.tick(FPS)
-
-    pygame.quit()
+pygame.quit()
