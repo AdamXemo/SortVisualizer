@@ -1,23 +1,28 @@
 import pygame
-
+import random
 
 pygame.init()
-width, height = 800, 600
-screen = pygame.display.set_mode((width, height))
+
+WIDTH, HEIGHT = 800, 600
+MARGIN = 10
+BAR_WIDTH = 10
+HEIGHT_SCALE = 10
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 
 def draw_element(index, value):
-    margin = 10
-    element_width = 10
-    height_scale = 10
-    pygame.draw.rect(screen,
-                     (200, 200, 200),
-                     pygame.Rect(
-                        margin + index*(element_width+margin),
-                        height - margin - height_scale*value,
-                        element_width,
-                        height_scale * value))
+    pygame.draw.rect(
+        screen,
+        (200, 200, 200),
+        pygame.Rect(
+            MARGIN + index * (BAR_WIDTH + MARGIN),  # X position
+            HEIGHT - MARGIN - HEIGHT_SCALE * value,  # Y position
+            BAR_WIDTH,  # Bar width
+            HEIGHT_SCALE * value  # Bar height based on value
+        )
+    )
 
 
 def draw_array(array):
@@ -32,7 +37,8 @@ while True:
 
     screen.fill((0, 0, 0))
 
-    draw_array([3, 1, 4, 1, 5])
+    random_array = random.sample(range(50), 50)
+    draw_array(random_array)
 
     pygame.display.flip()
     clock.tick(60)
