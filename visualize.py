@@ -1,5 +1,6 @@
 import pygame
 
+
 pygame.init()
 width, height = 800, 600
 screen = pygame.display.set_mode((width, height))
@@ -31,7 +32,7 @@ while True:
 
     screen.fill((0, 0, 0))
 
-    draw_array([3,1,4,1,5])
+    draw_array([3, 1, 4, 1, 5])
 
     pygame.display.flip()
     clock.tick(60)
