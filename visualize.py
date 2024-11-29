@@ -8,6 +8,8 @@ WIDTH, HEIGHT = 800, 600
 MARGIN = 10
 BAR_WIDTH = 10
 HEIGHT_SCALE = 10
+FPS = 20
+ARRAY_SIZE = 20
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
@@ -37,12 +39,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
 
-    random_array = random.sample(range(20), 20)
+    random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
     draw_array(random_array)
 
     for step in sort.insertion_sort(random_array):
         draw_array(step)
         pygame.display.flip()
-        clock.tick(20)
+        clock.tick(FPS)
 
     pygame.quit()
