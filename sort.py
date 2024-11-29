@@ -11,10 +11,9 @@ def insertion_sort(arr):
         j = i - 1
         while j >= 0 and key < arr[j]:
             arr[j+1] = arr[j]
+            arr[j] = key
             yield arr
             j -= 1
-        arr[j+1] = key
-        yield arr
 
 if __name__ == "__main__":
     import random
