@@ -1,7 +1,9 @@
 import pygame
 import random
 import sort
+import numpy as np
 
+pygame.mixer.pre_init(frequency=44100, size=-16, channels=1)
 pygame.init()
 
 MARGIN = 10
@@ -27,6 +29,13 @@ def draw_element(array, index, color):
             HEIGHT_SCALE * array[index]  # Bar height based on value
         )
     )
+
+
+def play_sine_wave(frequency):
+    samples = 0.05 * np.sin(2 * np.pi * frequency * np.arange(0, 1/FPS, 1/44100))
+    samples = samples.astype(np.float16)
+    sound = pygame.mixer.Sound(samples)
+    sound.play(0)
 
 
 def draw_array(array):
