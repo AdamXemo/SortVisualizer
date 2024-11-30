@@ -45,6 +45,10 @@ def draw_array(array):
     for i in array["highlight"]:
         draw_element(array["values"], i, (200, 30, 30))
 
+    last_highlighted = array["values"][array["highlight"][-1]]
+    frequency = 220 * 4**((last_highlighted-1) / ARRAY_SIZE)
+    play_sine_wave(frequency)
+
 
 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
 
