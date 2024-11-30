@@ -107,6 +107,7 @@ while True:
         draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (30, 200, 30))
 
         if highlighted_index == len(random_array) - 1:
+            draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (200, 200, 200))
             draw_text("Sorting Complete! Press R to Reset.")
     elif redraw:
         draw_array(sorting_steps[current_step_index])
