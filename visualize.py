@@ -15,23 +15,25 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 
-def draw_element(index, value):
+def draw_element(array, index, color):
     pygame.draw.rect(
         screen,
-        (200, 200, 200),
+        color,
         pygame.Rect(
             MARGIN + index * (BAR_WIDTH + MARGIN),  # X position
-            HEIGHT - MARGIN - HEIGHT_SCALE * value,  # Y position
+            HEIGHT - MARGIN - HEIGHT_SCALE * array[index],  # Y position
             BAR_WIDTH,  # Bar width
-            HEIGHT_SCALE * value  # Bar height based on value
+            HEIGHT_SCALE * array[index]  # Bar height based on value
         )
     )
 
 
 def draw_array(array):
     screen.fill((0, 0, 0))
-    for i in range(len(array)):
-        draw_element(i, array[i])
+    for i in range(len(array["values"])):
+        draw_element(array["values"], i, (200, 200, 200))
+    for i in array["highlight"]:
+        draw_element(array["values"], i, (200, 30, 30))
 
 
 random_array = random.sample(range(ARRAY_SIZE), ARRAY_SIZE)
