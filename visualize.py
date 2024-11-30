@@ -14,6 +14,11 @@ FPS = 60
 ARRAY_SIZE = 50
 WIDTH = MARGIN + ARRAY_SIZE*(BAR_WIDTH+MARGIN)
 HEIGHT = 2*MARGIN + ARRAY_SIZE*HEIGHT_SCALE
+WHITE = (255, 255, 255)
+GRAY = (200, 200, 200)
+RED = (200, 30, 30)
+GREEN = (30, 200, 30)
+BLUE = (30, 30, 200)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
@@ -39,10 +44,10 @@ def play_sine_wave(frequency):
     sound.play(0)
 
 
-def draw_array(array, highligh_color = (200, 30, 30)):
+def draw_array(array, highligh_color = RED):
     screen.fill((0, 0, 0))
     for i in range(len(array["values"])):
-        draw_element(array["values"], i, (200, 200, 200))
+        draw_element(array["values"], i, GRAY)
     for i in array["highlight"]:
         draw_element(array["values"], i, highligh_color)
 
@@ -52,7 +57,7 @@ def draw_array(array, highligh_color = (200, 30, 30)):
 
 def draw_text(text):
     font = pygame.font.SysFont("Arial", 40)
-    text = font.render(text, True, (255, 255, 255))
+    text = font.render(text, True, WHITE)
     x = (WIDTH - text.get_width()) // 2
     y = HEIGHT * 0.05
     screen.blit(text, (x, y))
@@ -109,10 +114,10 @@ while True:
         if highlighted_index < len(random_array) - 1:
             highlighted_index += 1
             time.sleep(0.01)
-        draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (30, 200, 30))
+        draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, GREEN)
 
         if highlighted_index == len(random_array) - 1:
-            draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (200, 200, 200))
+            draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, GRAY)
             draw_text("Sorting Complete! Press R to Reset, Q to quit.")
 
     elif redraw:
