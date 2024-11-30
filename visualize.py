@@ -4,12 +4,13 @@ import sort
 
 pygame.init()
 
-WIDTH, HEIGHT = 1020, 600
 MARGIN = 10
 BAR_WIDTH = 10
 HEIGHT_SCALE = 10
 FPS = 60
 ARRAY_SIZE = 50
+WIDTH = MARGIN + ARRAY_SIZE*(BAR_WIDTH+MARGIN)
+HEIGHT = 2*MARGIN + ARRAY_SIZE*HEIGHT_SCALE
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
