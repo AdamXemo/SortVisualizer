@@ -53,7 +53,9 @@ def draw_array(array, highligh_color = (200, 30, 30)):
 def draw_text(text):
     font = pygame.font.SysFont("Arial", 40)
     text = font.render(text, True, (255, 255, 255))
-    screen.blit(text, (WIDTH // 6, HEIGHT * 0.05))
+    x = (WIDTH - text.get_width()) // 2
+    y = HEIGHT * 0.05
+    screen.blit(text, (x, y))
 
 
 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
@@ -85,6 +87,9 @@ while True:
                 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
                 sorting_steps = list(sort.bubble_sort(random_array))
                 current_step_index = 0
+            if event.key == pygame.K_q:
+                pygame.quit()
+                exit()
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_d]:
@@ -108,7 +113,8 @@ while True:
 
         if highlighted_index == len(random_array) - 1:
             draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (200, 200, 200))
-            draw_text("Sorting Complete! Press R to Reset.")
+            draw_text("Sorting Complete! Press R to Reset, Q to quit.")
+
     elif redraw:
         draw_array(sorting_steps[current_step_index])
 
