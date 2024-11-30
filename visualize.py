@@ -39,12 +39,12 @@ def play_sine_wave(frequency):
     sound.play(0)
 
 
-def draw_array(array):
+def draw_array(array, highligh_color = (200, 30, 30)):
     screen.fill((0, 0, 0))
     for i in range(len(array["values"])):
         draw_element(array["values"], i, (200, 200, 200))
     for i in array["highlight"]:
-        draw_element(array["values"], i, (200, 30, 30))
+        draw_element(array["values"], i, highligh_color)
 
     last_highlighted = array["values"][array["highlight"][-1]]
     frequency = 220 * 4**((last_highlighted-1) / ARRAY_SIZE)
@@ -59,7 +59,7 @@ def draw_text(text):
 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
 
 paused = False
-sorting_steps = list(sort.bubble_sort(random_array))
+sorting_steps = list(sort.merge_sort(random_array))
 current_step_index = 0
 highlighted_index = 1
 
@@ -104,7 +104,7 @@ while True:
         if highlighted_index < len(random_array) - 1:
             highlighted_index += 1
             time.sleep(0.01)
-        draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]})
+        draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, (30, 200, 30))
 
         if highlighted_index == len(random_array) - 1:
             draw_text("Sorting Complete! Press R to Reset.")
