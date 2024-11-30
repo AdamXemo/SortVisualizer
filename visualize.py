@@ -92,6 +92,7 @@ while True:
                 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
                 sorting_steps = list(sort.bubble_sort(random_array))
                 current_step_index = 0
+                play_sounds = True
             if event.key == pygame.K_q:
                 pygame.quit()
                 exit()
