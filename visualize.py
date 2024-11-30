@@ -47,21 +47,21 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 paused = not paused
-            if event.key == pygame.K_RIGHT: # step forward
+            if event.key == pygame.K_RIGHT:  # step forward
                 if current_step_index < len(sorting_steps) - 1:
                     current_step_index += 1
-            if event.key == pygame.K_LEFT: # step backward
+            if event.key == pygame.K_LEFT:  # step backward
                 if current_step_index > 0:
                     current_step_index -= 1
             if event.key == pygame.K_r:
                 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
                 sorting_steps = list(sort.bubble_sort(random_array))
                 current_step_index = 0
-            
+
     keys = pygame.key.get_pressed()
     if keys[pygame.K_d]:
         if current_step_index < len(sorting_steps) - 1:
@@ -74,11 +74,11 @@ while True:
         current_step_index += 1
 
     draw_array(sorting_steps[current_step_index])
-    
+
     if paused:
         font = pygame.font.SysFont('Arial', 40)
         text = font.render("Sorting Paused. Press Space to Resume.", True, (255, 255, 255))
         screen.blit(text, (WIDTH // 6, HEIGHT * 0.05))
-        
+
     pygame.display.flip()
     clock.tick(FPS)
