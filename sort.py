@@ -3,7 +3,8 @@ def bubble_sort(arr):
         for j in range(len(arr)-i-1):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-                yield arr.copy()
+            yield {"values": arr.copy(),
+                   "highlight": [j, j+1]}
 
 
 def insertion_sort(arr):
@@ -13,7 +14,8 @@ def insertion_sort(arr):
         while j >= 0 and key < arr[j]:
             arr[j+1] = arr[j]
             arr[j] = key
-            yield arr.copy()
+            yield {"values": arr.copy(),
+                   "highlight": [j, j+1]}
             j -= 1
 
 
@@ -21,10 +23,15 @@ def merge(arr, start1, end1, start2, end2):
     if start1 > end1 or start2 > end2:
         return
     if arr[start2] < arr[start1]:
+        yield {"values": arr.copy(),
+               "highlight": [start1, start2]}
         arr.insert(start1, arr.pop(start2))
-        yield arr.copy()
+        yield {"values": arr.copy(),
+               "highlight": [start1, start1+1]}
         yield from merge(arr, start1+1, end1+1, start2+1, end2)
     else:
+        yield {"values": arr.copy(),
+               "highlight": [start1, start2]}
         yield from merge(arr, start1+1, end1, start2, end2)
 
 
