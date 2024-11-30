@@ -2,6 +2,7 @@ import pygame
 import random
 import sort
 import numpy as np
+import time
 
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=1)
 pygame.init()
@@ -60,6 +61,7 @@ random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
 paused = False
 sorting_steps = list(sort.bubble_sort(random_array))
 current_step_index = 0
+highlighted_index = 1
 
 while True:
     redraw = False
@@ -98,7 +100,12 @@ while True:
         current_step_index += 1
         redraw = True
 
-    if redraw:
+    if current_step_index == len(sorting_steps) - 1:
+        if highlighted_index < len(random_array) - 1:
+            highlighted_index += 1
+            time.sleep(0.01)
+        draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]})
+    elif redraw:
         draw_array(sorting_steps[current_step_index])
 
     if paused:
