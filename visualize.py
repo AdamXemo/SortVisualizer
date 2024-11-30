@@ -49,6 +49,11 @@ def draw_array(array):
     frequency = 220 * 4**((last_highlighted-1) / ARRAY_SIZE)
     play_sine_wave(frequency)
 
+def draw_text(text):
+    font = pygame.font.SysFont("Arial", 40)
+    text = font.render(text, True, (255, 255, 255))
+    screen.blit(text, (WIDTH // 6, HEIGHT * 0.05))
+
 
 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
 
@@ -97,9 +102,7 @@ while True:
         draw_array(sorting_steps[current_step_index])
 
     if paused:
-        font = pygame.font.SysFont('Arial', 40)
-        text = font.render("Sorting Paused. Press Space to Resume.", True, (255, 255, 255))
-        screen.blit(text, (WIDTH // 6, HEIGHT * 0.05))
+        draw_text("Sorting Paused. Press Space to Resume.")
 
     pygame.display.flip()
     clock.tick(FPS)
