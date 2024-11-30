@@ -57,6 +57,7 @@ sorting_steps = list(sort.bubble_sort(random_array))
 current_step_index = 0
 
 while True:
+    redraw = False
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -68,9 +69,11 @@ while True:
             if event.key == pygame.K_RIGHT:  # step forward
                 if current_step_index < len(sorting_steps) - 1:
                     current_step_index += 1
+                    redraw = True
             if event.key == pygame.K_LEFT:  # step backward
                 if current_step_index > 0:
                     current_step_index -= 1
+                    redraw = True
             if event.key == pygame.K_r:
                 random_array = random.sample(range(1, ARRAY_SIZE+1), ARRAY_SIZE)
                 sorting_steps = list(sort.bubble_sort(random_array))
@@ -80,14 +83,18 @@ while True:
     if keys[pygame.K_d]:
         if current_step_index < len(sorting_steps) - 1:
             current_step_index += 1
+            redraw = True
     if keys[pygame.K_a]:
         if current_step_index > 0:
             current_step_index -= 1
+            redraw = True
 
     if not paused and current_step_index < len(sorting_steps) - 1:
         current_step_index += 1
+        redraw = True
 
-    draw_array(sorting_steps[current_step_index])
+    if redraw:
+        draw_array(sorting_steps[current_step_index])
 
     if paused:
         font = pygame.font.SysFont('Arial', 40)
