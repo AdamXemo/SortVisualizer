@@ -49,6 +49,39 @@ def merge_sort(arr, start=0, end=-1):
     yield from merge(arr, start, middle, middle+1, end)
 
 
+def quick_sort(arr, start, end):
+    if end <= start:
+        return
+
+    pivot = arr[(start+end) // 2]
+    i = start-1
+    j = end+1
+    while True:
+        while True:
+            i += 1
+            if arr[i] >= pivot:
+                break
+            yield {"values": arr.copy(),
+                   "highlight": [i, j-1]}
+
+        while True:
+            j -= 1
+            if arr[j] <= pivot:
+                break
+            yield {"values": arr.copy(),
+                   "highlight": [i, j]}
+
+        if i < j:
+            arr[i], arr[j] = arr[j], arr[i]
+            yield {"values": arr.copy(),
+                   "highlight": [i, j]}
+        else:
+            break
+
+    yield from quick_sort(arr, start, j)
+    yield from quick_sort(arr, j+1, end)
+
+
 if __name__ == "__main__":
     import random
 
