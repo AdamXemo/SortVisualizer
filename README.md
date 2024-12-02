@@ -30,6 +30,18 @@ SortVisualizer is an interactive Python application that allows you to visualize
 Before running the project, ensure you have the following installed:
 
 -   Python 3.7+
+-   The packages listed in the [Requirements](#requirements) section
+
+## Requirements
+
+The required dependencies for this project are listed in the `requirements.txt` file. You can install them using pip:
+
+```
+pip install -r requirements.txt
+```
+
+The required packages are:
+
 -   Pygame
 -   Pygame Menu
 -   NumPy
