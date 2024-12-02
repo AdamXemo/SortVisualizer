@@ -34,11 +34,7 @@ Before running the project, ensure you have the following installed:
 
 ## Requirements
 
-The required dependencies for this project are listed in the `requirements.txt` file. You can install them using pip:
-
-```
-pip install -r requirements.txt
-```
+The required dependencies for this project are listed in the `requirements.txt` file.
 
 The required packages are:
 
@@ -56,8 +52,9 @@ The required packages are:
     ```
 
 2. Install required dependencies:
+
     ```
-    pip install pygame pygame-menu numpy
+    pip install -r requirements.txt
     ```
 
 ## How to Run
