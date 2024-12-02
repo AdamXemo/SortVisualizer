@@ -80,11 +80,3 @@ The SortVisualizer application provides real-time visualization of various sorti
 
 -   `visualize.py`: Main visualization logic and Pygame interface
 -   `sort.py`: Implementation of sorting algorithms as generator functions
-
-## Contributing
-
-Contributions are welcome! Feel free to:
-
--   Add new sorting algorithms
--   Improve visualization techniques
--   Enhance user interface
