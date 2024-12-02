@@ -133,7 +133,7 @@ def visualize_sorting(array_size, array_type, selected_algorithm):
 
             if highlighted_index == len(array) - 1:
                 play_sounds = False
-                draw_array({"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, GRAY, play_sounds)
+                draw_array(screen, {"values": sorting_steps[current_step_index]["values"], "highlight": [highlighted_index]}, GRAY, play_sounds, height)
                 draw_text(screen, "Sorting Complete! Press R to Reset, Q to quit.", width, height)
         else:
             draw_array(screen, sorting_steps[current_step_index], RED, play_sounds, height)
