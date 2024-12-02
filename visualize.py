@@ -14,6 +14,7 @@ HEIGHT_SCALE = 10
 FPS = 60
 WHITE = (255, 255, 255)
 GRAY = (200, 200, 200)
+BLACK = (0, 0, 0)
 RED = (200, 30, 30)
 GREEN = (30, 200, 30)
 BLUE = (30, 30, 200)
@@ -41,7 +42,7 @@ def play_sine_wave(frequency):
 
 
 def draw_array(screen, array, highligh_color, play_sounds, height):
-    screen.fill((0, 0, 0))
+    screen.fill(BLACK)
     for i in range(len(array["values"])):
         draw_element(screen, array["values"], i, GRAY, height)
     for i in array["highlight"]:
@@ -149,7 +150,7 @@ def menu():
     pygame.display.set_mode((800, 600))
 
     custom_theme = pygame_menu.Theme(
-        background_color=(0, 0, 0),
+        background_color=BLACK,
         title_font=pygame_menu.font.FONT_OPEN_SANS_BOLD,
         title_font_size=40,
         title_font_color=WHITE,
