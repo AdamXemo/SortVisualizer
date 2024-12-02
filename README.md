@@ -82,7 +82,3 @@ Contributions are welcome! Feel free to:
 -   Add new sorting algorithms
 -   Improve visualization techniques
 -   Enhance user interface
-
-## License
-
-[Specify your license here]
