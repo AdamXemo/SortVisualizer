@@ -70,6 +70,12 @@ python visualize.py
 -   **Array Type**: Choose initial array configuration
 -   **Algorithm**: Select sorting algorithm to visualize
 
+## Screenshots
+
+The SortVisualizer application provides real-time visualization of various sorting algorithms. Here's an example of the Merge Sort algorithm sorting a random array:
+
+![Merge Sort Visualization](merge-sort-example.png)
+
 ## Project Structure
 
 -   `visualize.py`: Main visualization logic and Pygame interface
