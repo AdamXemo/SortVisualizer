@@ -21,6 +21,7 @@ BLUE = (30, 30, 200)
 
 clock = pygame.time.Clock()
 
+
 def draw_element(screen, array, index, color, height):
     pygame.draw.rect(
         screen,
@@ -75,6 +76,7 @@ def draw_text(screen, text, width, height):
     x = (width - text.get_width()) // 2
     y = height * 0.05
     screen.blit(text, (x, y))
+
 
 def visualize_sorting(array_size, array_type, selected_algorithm):
     width = MARGIN + array_size * (BAR_WIDTH + MARGIN)
@@ -197,5 +199,6 @@ def menu():
     menu.add.button('Quit', pygame_menu.events.EXIT)
 
     menu.mainloop(pygame.display.set_mode((800, 600)))
+
 
 menu()
