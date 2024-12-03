@@ -49,7 +49,9 @@ def merge_sort(arr, start=0, end=-1):
     yield from merge(arr, start, middle, middle+1, end)
 
 
-def quick_sort(arr, start, end):
+def quick_sort(arr, start=0, end=-1):
+    end %= len(arr)
+
     if end <= start:
         return
 
