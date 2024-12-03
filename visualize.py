@@ -5,7 +5,7 @@ import numpy as np
 import time
 import pygame_menu
 
-pygame.mixer.pre_init(frequency=44100, size=-16, channels=1)
+pygame.mixer.pre_init(frequency=44100, size=32, channels=1)
 pygame.init()
 
 MARGIN = 10
@@ -35,9 +35,26 @@ def draw_element(screen, array, index, color, height):
 
 
 def play_sine_wave(frequency):
-    samples = 0.05 * np.sin(2 * np.pi * frequency * np.arange(0, 1/FPS, 1/44100))
-    samples = samples.astype(np.float16)
-    sound = pygame.mixer.Sound(samples)
+    attack = 0.05
+    sustain = 0.5
+    release = 0.7
+    volume = 0.3
+    duration = attack + sustain + release
+
+    def sound_level(x):
+        if x < attack:
+            return x / attack
+        if x < attack + sustain:
+            return 1
+        if x < attack + sustain + release:
+            return 1 - (x - attack - sustain) / release
+        else:
+            return 0
+
+    envelope = np.array(list(map(sound_level, np.arange(0, duration, 1/44100*FPS))))
+    samples = np.sin(2 * np.pi * frequency * np.arange(0, duration/FPS, 1/44100))
+    samples = volume * samples * envelope
+    sound = pygame.mixer.Sound(samples.astype(np.float32))
     sound.play(0)
 
 
