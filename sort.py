@@ -82,13 +82,3 @@ def quick_sort(arr, start=0, end=-1):
 
     yield from quick_sort(arr, start, j)
     yield from quick_sort(arr, j+1, end)
-
-
-if __name__ == "__main__":
-    import random
-
-    arr = random.sample(range(10), 10)
-    print(arr)
-
-    sorted_arr = insertion_sort(arr)
-    print(sorted_arr)
