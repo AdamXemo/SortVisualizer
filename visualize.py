@@ -68,7 +68,9 @@ def draw_array(screen, array, highligh_color, play_sounds, height):
 
     if play_sounds:
         for index in array["highlight"]:
-            play_sine_wave(220 * 4**((array["values"][index]-1) / len(array["values"])))
+            percentage = (array["values"][index]-1) / len(array["values"])
+            play_sine_wave(220 * 4**percentage)
+
 
 def draw_text(screen, text, width, height):
     font = pygame.font.SysFont("Arial", 40)
