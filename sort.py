@@ -82,3 +82,28 @@ def quick_sort(arr, start=0, end=-1):
 
     yield from quick_sort(arr, start, j)
     yield from quick_sort(arr, j+1, end)
+
+
+def heap_sort(arr):
+    start = len(arr) // 2
+    end = len(arr)
+    while end > 0:
+        if start > 0:
+            start -= 1
+        else:
+            end -= 1
+            arr[0], arr[end] = arr[end], arr[0]
+            yield {"values": arr.copy(),
+                   "highlight": [0, end]}
+
+        while (child := 2*start + 1) < end:
+            if child + 1 < end and arr[child+1] > arr[child]:
+                child = child+1
+
+            if arr[start] < arr[child]:
+                arr[start], arr[child] = arr[child], arr[start]
+                yield {"values": arr.copy(),
+                       "highlight": [start, child]}
+                start = child
+            else:
+                break
