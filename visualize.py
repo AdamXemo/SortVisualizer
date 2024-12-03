@@ -48,11 +48,9 @@ def draw_array(screen, array, highligh_color, play_sounds, height):
     for i in array["highlight"]:
         draw_element(screen, array["values"], i, highligh_color, height)
 
-    last_highlighted = array["values"][array["highlight"][-1]]
-
     if play_sounds:
-        frequency = 220 * 4**((last_highlighted-1) / len(array))
-        play_sine_wave(frequency)
+        for index in array["highlight"]:
+            play_sine_wave(220 * 4**((array["values"][index]-1) / len(array["values"])))
 
 def draw_text(screen, text, width, height):
     font = pygame.font.SysFont("Arial", 40)
