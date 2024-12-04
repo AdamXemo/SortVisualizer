@@ -19,6 +19,24 @@ def insertion_sort(arr):
             j -= 1
 
 
+def shell_sort(arr):
+    gaps = [701, 301, 132, 57, 23, 10, 4, 1]
+    for gap in gaps:
+        for i in range(1, len(arr)):
+            j = i
+            while j-gap >= 0:
+                yield {"values": arr.copy(),
+                       "highlight": [j-gap, j]}
+
+                if arr[j-gap] <= arr[j]:
+                    break
+
+                arr[j-gap], arr[j] = arr[j], arr[j-gap]
+                yield {"values": arr.copy(),
+                       "highlight": [j-gap, j]}
+                j -= gap
+
+
 def merge(arr, start1, end1, start2, end2):
     if start1 > end1 or start2 > end2:
         return
