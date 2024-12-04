@@ -22,16 +22,16 @@ def insertion_sort(arr):
 def merge(arr, start1, end1, start2, end2):
     if start1 > end1 or start2 > end2:
         return
+
+    yield {"values": arr.copy(),
+           "highlight": [start1, start2]}
+
     if arr[start2] < arr[start1]:
-        yield {"values": arr.copy(),
-               "highlight": [start1, start2]}
         arr.insert(start1, arr.pop(start2))
         yield {"values": arr.copy(),
                "highlight": [start1, start1+1]}
         yield from merge(arr, start1+1, end1+1, start2+1, end2)
     else:
-        yield {"values": arr.copy(),
-               "highlight": [start1, start2]}
         yield from merge(arr, start1+1, end1, start2, end2)
 
 
