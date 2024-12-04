@@ -103,6 +103,9 @@ def visualize_sorting(array_size, array_type, selected_algorithm):
         "Insertion Sort": sort.insertion_sort,
         "Merge Sort": sort.merge_sort,
         "Quick Sort": sort.quick_sort,
+        "Shell Sort": sort.shell_sort,
+        "Heap Sort": sort.heap_sort,
+        "Bogo Sort": sort.bogo_sort
     }
 
     sorting_algorithm = algorithm_map[selected_algorithm]
@@ -193,8 +196,13 @@ def menu():
 
     algorithm = menu.add.selector(
         "Algorithm: ",
-        [("Bubble Sort", "Bubble Sort"), ("Insertion Sort", "Insertion Sort"), ("Merge Sort", "Merge Sort"), ("Quick Sort", "Quick Sort")],
-        default=2
+        [("Bubble Sort", "Bubble Sort"),
+         ("Insertion Sort", "Insertion Sort"),
+         ("Merge Sort", "Merge Sort"), 
+         ("Quick Sort", "Quick Sort"), 
+         ("Shell Sort", "Shell Sort"), 
+         ("Heap Sort", "Heap Sort"),
+         ("Bogo Sort", "Bogo Sort")],
     )
 
     menu.add.button('Start', lambda: visualize_sorting(int(array_size.get_value()), array_type.get_value()[0][1], algorithm.get_value()[0][1]))
