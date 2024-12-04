@@ -1,10 +1,15 @@
+def swap(arr, i, j):
+    yield {"values": arr.copy(),
+           "highlight": [i, j]}
+    arr[i], arr[j] = arr[j], arr[i]
+
+
 def bubble_sort(arr):
     for i in range(len(arr)):
         for j in range(len(arr)-i-1):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
-            yield {"values": arr.copy(),
-                   "highlight": [j, j+1]}
+            yield from swap(arr, j, j+1)
 
 
 def insertion_sort(arr):
@@ -14,8 +19,7 @@ def insertion_sort(arr):
         while j >= 0 and key < arr[j]:
             arr[j+1] = arr[j]
             arr[j] = key
-            yield {"values": arr.copy(),
-                   "highlight": [j, j+1]}
+            yield from swap(arr, j, j+1)
             j -= 1
 
 
@@ -23,15 +27,12 @@ def merge(arr, start1, end1, start2, end2):
     if start1 > end1 or start2 > end2:
         return
     if arr[start2] < arr[start1]:
-        yield {"values": arr.copy(),
-               "highlight": [start1, start2]}
+        yield from swap(arr, start1, start2)
         arr.insert(start1, arr.pop(start2))
-        yield {"values": arr.copy(),
-               "highlight": [start1, start1+1]}
+        yield from swap(arr, start1, start1+1)
         yield from merge(arr, start1+1, end1+1, start2+1, end2)
     else:
-        yield {"values": arr.copy(),
-               "highlight": [start1, start2]}
+        yield from swap(arr, start1, start2)
         yield from merge(arr, start1+1, end1, start2, end2)
 
 
@@ -63,20 +64,17 @@ def quick_sort(arr, start=0, end=-1):
             i += 1
             if arr[i] >= pivot:
                 break
-            yield {"values": arr.copy(),
-                   "highlight": [i, j-1]}
+            yield from swap(arr, i, j-1)
 
         while True:
             j -= 1
             if arr[j] <= pivot:
                 break
-            yield {"values": arr.copy(),
-                   "highlight": [i, j]}
+            yield from swap(arr, i, j)
 
         if i < j:
             arr[i], arr[j] = arr[j], arr[i]
-            yield {"values": arr.copy(),
-                   "highlight": [i, j]}
+            yield from swap(arr, i, j)
         else:
             break
 
@@ -93,8 +91,7 @@ def heap_sort(arr):
         else:
             end -= 1
             arr[0], arr[end] = arr[end], arr[0]
-            yield {"values": arr.copy(),
-                   "highlight": [0, end]}
+            yield from swap(arr, 0, end)
 
         while (child := 2*start + 1) < end:
             if child + 1 < end and arr[child+1] > arr[child]:
@@ -102,8 +99,7 @@ def heap_sort(arr):
 
             if arr[start] < arr[child]:
                 arr[start], arr[child] = arr[child], arr[start]
-                yield {"values": arr.copy(),
-                       "highlight": [start, child]}
+                yield from swap(arr, start, child)
                 start = child
             else:
                 break
