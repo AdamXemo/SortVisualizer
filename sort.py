@@ -1,3 +1,6 @@
+import random
+import time
+
 def bubble_sort(arr):
     for i in range(len(arr)):
         for j in range(len(arr)-i-1):
@@ -124,3 +127,10 @@ def heap_sort(arr):
                 start = child
             else:
                 break
+
+def bogo_sort(arr):
+    for _ in range(1000):
+        random.shuffle(arr)
+        yield {"values": arr.copy(),
+               "highlight": random.sample(range(len(arr)-1), len(arr) // 5)}
+        
