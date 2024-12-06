@@ -22,7 +22,7 @@ def insertion_sort(arr):
 
 
 def shell_sort(arr):
-    gaps = [701, 301, 132, 57, 23, 10, 4, 1]  # Ciura's gap sequence
+    gaps = [1750, 701, 301, 132, 57, 23, 10, 4, 1]  # Ciura's gap sequence
     for gap in gaps:
         for i in range(1, len(arr)):
             j = i
